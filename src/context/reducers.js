@@ -1,6 +1,5 @@
 import LocalStorageService from "./localstorage";
 
-console.log(LocalStorageService)
 const localStorageService = LocalStorageService.getService();
 
 export const LOGIN = "LOGIN";

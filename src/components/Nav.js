@@ -3,7 +3,8 @@ import React from "react";
 import { Pane, SearchInput, Card, Heading } from "evergreen-ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraAlt } from '@fortawesome/pro-solid-svg-icons';
-import { faUser, faHorizontalRule } from '@fortawesome/pro-light-svg-icons';
+import { faUser, faHorizontalRule, faHeart, faCompass, faPlusCircle} from '@fortawesome/pro-light-svg-icons';
+import { Link } from 'react-router-dom'
 
 const FlexPane = props => {
   return (
@@ -30,7 +31,7 @@ const NavLogo = props => {
       minWidth={40}
       alignItems="center"
     >
-      <a href="/" style={{ width: "100%", textDecoration: "none" }}>
+      <Link to="/" style={{ width: "100%", textDecoration: "none" }}>
         <Card
           display="flex"
           alignItems="center"
@@ -46,10 +47,10 @@ const NavLogo = props => {
             color="#333"
           />
           <Heading size={700} color="#333">
-            Gomofoto
+            Gomofoto 2
           </Heading>
         </Card>
-      </a>
+      </Link>
     </Card>
   );
 };
@@ -64,9 +65,12 @@ const NavLinks = props => {
       alignItems="center"
       justifyContent="flex-end"
     >
-      <a href="/user/fillet54">
+      <Link to="/upload" style={{paddingLeft: "20px"}}>
+        <FontAwesomeIcon icon={faPlusCircle} size="2x" color="#333" />
+      </Link>
+      <Link to="/user/fillet54" style={{paddingLeft: "20px"}}>
         <FontAwesomeIcon icon={faUser} size="2x" color="#333" />
-      </a>
+      </Link>
     </Card>
   );
 };

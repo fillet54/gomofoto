@@ -30,29 +30,20 @@ const GlobalState = props => {
     const accessToken = localStorageService.getAccessToken();
     const refreshToken = localStorageService.getRefreshToken();
 
-    const revokeAccess = axios({
-      method: "delete",
-      url: "http://localhost:5000/auth/token",
-      config: {
-        headers: { Authorization: "Bearer " + accessToken }
-      }
-    });
-
-    const revokeRefresh = axios({
-      method: "delete",
-      url: "http://localhost:5000/auth/refresh",
-      config: {
-        headers: { Authorization: "Bearer " + refreshToken }
-      }
-    });
-
-    return revokeAccess
-    .finally(function(response) {
-        return revokeRefresh 
-    })
-   .finally(function(response) {
-      dispatch({ type: LOGOUT });
-    });
+    const config = {
+      headers: { Authorization: "Bearer " + refreshToken }
+    };
+    return axios
+      .delete("http://localhost:5000/auth/refresh", config)
+      .finally(function(response) {
+        const config = {
+          headers: { Authorization: "Bearer " + accessToken }
+        };
+        return axios.delete("http://localhost:5000/auth/token", config);
+      })
+      .finally(function(response) {
+        dispatch({ type: LOGOUT });
+      });
   };
 
   return (

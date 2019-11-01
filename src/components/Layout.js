@@ -2,7 +2,7 @@ import React from "react";
 import { Pane } from "evergreen-ui";
 import Nav from "./Nav";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, backgroundColor="#fafafa"}) => {
   return (
     <Pane
       is="section"
@@ -21,15 +21,30 @@ const Layout = ({ children }) => {
         alignItems="stretch"
         flexDirection="columns"
         paddingTop={60}
-        backgroundColor="#fafafa"
+        backgroundColor={backgroundColor}
         position="relative"
-        minHeight="100vh"
+        minHeight="calc(100vh - 80px)"
       >
-        <Pane display="flex">{children}</Pane>
+        <Pane
+          display="flex"
+          width="100%"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Pane
+            display="flex"
+            width="100%"
+            maxWidth={800}
+            flexDirection="column"
+            alignItems="center"
+          >
+            {children}
+          </Pane>
+        </Pane>
       </Pane>
       <Nav />
     </Pane>
   );
-}
+};
 
-export default Layout
+export default Layout;
