@@ -1,0 +1,8 @@
+[build]
+  publish = "build/"
+
+  command = "npm run build"
+
+[template.environment]
+  FONTAWESOME_NPM_AUTH_TOKEN = "Your FontAwesome 5 NPM Token"
+  FAUNADB_SECRET = "Your FaunaDB Server Secret"
