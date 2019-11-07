@@ -1,24 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
-import SiteContext from '../context/site-context'
+import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/pro-solid-svg-icons";
+import { useAuth0 } from "../auth0";
 
 const LogoutPage = () => {
-    const {logout} = useContext(SiteContext)
-    const [inProgress, setInProgress] = useState(true)
+    const { loading, logout } = useAuth0();
 
-    useEffect(function() {
-        logout()
-        .finally(function (){
-            setInProgress(false)
-        })
-    }, []);
+    useEffect(() => {
+        if ( !loading )
+            logout({returnTo: window.location.origin})
+    }, [loading, logout]);
 
-    return (inProgress ? 
-        <FontAwesomeIcon icon={faSpinner} spin/> :
-        <Redirect to={{pathname: '/login'}} />
-    );
+    return <FontAwesomeIcon icon={faSpinner} spin/>
 }
 
 export default LogoutPage

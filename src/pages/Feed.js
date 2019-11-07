@@ -5,7 +5,8 @@ import { Button } from 'evergreen-ui';
 const FeedPage = () => {
   return (
       <Layout>
-        <Button appearance="primary">Click Me!</Button>
+        <h1>Welcome to Gomofoto</h1>
+        <h3>Yup this is all there is so far...</h3>
       </Layout>
   );
 }

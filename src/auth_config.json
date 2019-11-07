@@ -1,0 +1,5 @@
+{
+    "domain": "fiftycuatro.auth0.com",
+    "clientId": "sqndafvnBk1wi9n9jpI7zM9UDvEWxj4B",
+    "redirect_uri": "http://localhost:4200/callback"
+}

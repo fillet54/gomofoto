@@ -1,7 +1,7 @@
 import axios from "axios";
 import LocalStorageService from "./context/localstorage";
 import router from "./router/router";
-
+ 
 // LocalstorageService
 const localStorageService = LocalStorageService.getService();
 

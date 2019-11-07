@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import FeedPage from '../pages/Feed';
-import LoginPage from '../pages/Login';
+import LoginPage, { AuthLanding } from '../pages/Login';
 import LogoutPage from '../pages/Logout';
 import UploadPage from '../pages/Upload';
-import ProtectedRoute from './ProtectedRoute'
+import { LayoutProtectedRoute as ProtectedRoute } from './ProtectedRoute'
 
 const Router = () => {
     return (
@@ -12,6 +12,7 @@ const Router = () => {
             <Switch>
                 <Route path='/login' component={LoginPage} />
                 <Route path='/logout' component={LogoutPage} />
+                <Route path="/auth"   component={AuthLanding} />
                 <ProtectedRoute path='/upload' component={UploadPage} />
                 <ProtectedRoute path='/' component={FeedPage} />
             </Switch>

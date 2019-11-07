@@ -3,8 +3,9 @@ import React from "react";
 import { Pane, SearchInput, Card, Heading } from "evergreen-ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraAlt } from '@fortawesome/pro-solid-svg-icons';
-import { faUser, faHorizontalRule, faHeart, faCompass, faPlusCircle} from '@fortawesome/pro-light-svg-icons';
+import { faUser, faHorizontalRule, faSignIn, faSignOut, faPlusCircle} from '@fortawesome/pro-light-svg-icons';
 import { Link } from 'react-router-dom'
+import { useAuth0 } from "../auth0";
 
 const FlexPane = props => {
   return (
@@ -55,6 +56,28 @@ const NavLogo = props => {
   );
 };
 
+const LogoutLink = props => 
+  <Link to="/logout" {...props}>
+    <FontAwesomeIcon icon={faSignOut} size="2x" />
+  </Link>
+
+const LoginLink = props => 
+  <Link to="/login" {...props}>
+    <FontAwesomeIcon icon={faSignIn} size="2x" />
+  </Link>
+
+const AuthLink = props => {
+  const { loading, user } = useAuth0();
+
+  return (
+    <React.Fragment>
+      { loading && <div/>}
+      { !loading && !user && <LoginLink {...props} />}
+      { !loading && user &&  <LogoutLink {...props} />}
+    </React.Fragment>
+  )
+}
+
 const NavLinks = props => {
   return (
     <Card
@@ -68,9 +91,7 @@ const NavLinks = props => {
       <Link to="/upload" style={{paddingLeft: "20px"}}>
         <FontAwesomeIcon icon={faPlusCircle} size="2x" color="#333" />
       </Link>
-      <Link to="/user/fillet54" style={{paddingLeft: "20px"}}>
-        <FontAwesomeIcon icon={faUser} size="2x" color="#333" />
-      </Link>
+      <AuthLink style={{paddingLeft: "20px"}} />
     </Card>
   );
 };
