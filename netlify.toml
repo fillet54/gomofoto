@@ -5,3 +5,7 @@
 
 [template.environment]
   FONTAWESOME_NPM_AUTH_TOKEN = "Your FontAwesome 5 NPM Token"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
